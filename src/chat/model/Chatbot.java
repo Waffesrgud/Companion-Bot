@@ -48,7 +48,26 @@ public class Chatbot {
 	}
 
 	private void buildPoliticalTopicsList() {
-
+		politicalTopicList.add("election");
+		politicalTopicList.add("Democrat");
+		politicalTopicList.add("Republican");
+		politicalTopicList.add("liberal");
+		politicalTopicList.add("conservative");
+		politicalTopicList.add("Clinton");
+		politicalTopicList.add("Trump");
+		politicalTopicList.add("Kaine");
+		politicalTopicList.add("Pence");
+		politicalTopicList.add("11/8/2016");
+		politicalTopicList.add("Stein");
+		politicalTopicList.add("Johnson");
+		politicalTopicList.add("anarchy");
+		politicalTopicList.add("commmunism");
+		politicalTopicList.add("captialism");
+		politicalTopicList.add("campaign");
+		politicalTopicList.add("privilege");
+		politicalTopicList.add("benghazi");
+		politicalTopicList.add("feminism");
+		politicalTopicList.add("build a wall");
 	}
 
 	/**
