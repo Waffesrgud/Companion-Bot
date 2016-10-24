@@ -23,10 +23,28 @@ public class Chatbot {
 	 */
 	public Chatbot(String userName) {
 		memesList = new ArrayList<String>();
+		politicalTopicList = new ArrayList<String>();
 	}
 
 	private void buildMemesList() {
-
+		memesList.add("doge");
+		memesList.add("cute animals")
+		memesList.add("harambe");
+		memesList.add("john cena");
+		memesList.add("grumpy cat");
+		memesList.add("dat boi");
+		memesList.add("willy wonka");
+		memesList.add("caveman spongebob");
+		memesList.add("cavebob");
+		memesList.add("all your base");
+		memesList.add("zerg rush");
+		memesList.add("like a boss");
+		memesList.add("troll-face");
+		memesList.add("xD");
+		memesList.add("quickscoped");
+		memesList.add("noscoped");
+		memesList.add("deal with it");
+		memesList.add("oh baby a triple");
 	}
 
 	private void buildPoliticalTopicsList() {
@@ -59,7 +77,14 @@ public class Chatbot {
 	 * @return Whether it matches the content area.
 	 */
 	public boolean contentChecker(String currentInput) {
-		return false;
+		boolean hasContent = false;
+		
+		if ()
+		{
+			hasContent = true;
+		}
+		
+		return hasContent;
 	}
 
 	/**

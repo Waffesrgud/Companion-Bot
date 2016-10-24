@@ -51,7 +51,7 @@ public class ChatbotTest
 		String content = "topic area of interest";
 		sampleBot.setContent(content);
 		assertSame("Setters and Getters work", content, sampleBot.getContent());
-	}
+ 	}
 
 	@Test
 	public void testGetMemesList()
