@@ -45,6 +45,7 @@ public class Chatbot {
 		memesList.add("noscoped");
 		memesList.add("deal with it");
 		memesList.add("oh baby a triple");
+		memesList.add("beaned"); 
 	}
 
 	private void buildPoliticalTopicsList() {
@@ -57,14 +58,14 @@ public class Chatbot {
 		politicalTopicList.add("Trump");
 		politicalTopicList.add("Kaine");
 		politicalTopicList.add("Pence");
-		politicalTopicList.add("11/8/2016");
+		politicalTopicList.add("11/8/16");
 		politicalTopicList.add("Stein");
 		politicalTopicList.add("Johnson");
 		politicalTopicList.add("anarchy");
 		politicalTopicList.add("commmunism");
 		politicalTopicList.add("captialism");
 		politicalTopicList.add("campaign");
-		politicalTopicList.add("privilege");
+		politicalTopicList.add("Hillary");
 		politicalTopicList.add("benghazi");
 		politicalTopicList.add("feminism");
 		politicalTopicList.add("build a wall");
@@ -98,7 +99,7 @@ public class Chatbot {
 	public boolean contentChecker(String currentInput) {
 		boolean hasContent = false;
 		
-		if ()
+		if (currentInput.contains(content))
 		{
 			hasContent = true;
 		}
@@ -116,7 +117,19 @@ public class Chatbot {
 	 * @return Whether the String is contained in the ArrayList.
 	 */
 	public boolean politicalTopicChecker(String currentInput) {
-		return false;
+		boolean checkedPoliticalTopic = false;
+		if (politicalTopicList.size() == 0)
+		{
+		buildPoliticalTopicsList();	
+		}
+		for (String politicalTopic : politicalTopicList)
+		{
+			if (currentInput.contains(politicalTopic))
+			{
+				checkedPoliticalTopic = true;
+			}
+		}
+		return checkedPoliticalTopic;
 	}
 
 	/**
@@ -127,8 +140,22 @@ public class Chatbot {
 	 *            The supplied String to be checked.
 	 * @return Whether the supplied String is a recognized meme.
 	 */
-	public boolean memeChecker(String currentInput) {
-		return false;
+	public boolean memeChecker(String currentInput)
+	{
+		boolean checkedMeme = false;
+		if (memesList.size() == 0)
+		{
+		buildMemesList();	
+		}
+		for (String meme : memesList)
+		{
+			if (currentInput.contains(meme))
+			{
+				checkedMeme = true;
+			}
+		}
+		
+		return checkedMeme;
 	}
 
 	/**
