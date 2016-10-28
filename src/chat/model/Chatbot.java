@@ -24,6 +24,8 @@ public class Chatbot {
 	public Chatbot(String userName) {
 		memesList = new ArrayList<String>();
 		politicalTopicList = new ArrayList<String>();
+		buildMemesList();
+		buildPoliticalTopicsList();
 	}
 
 	private void buildMemesList() {
@@ -46,6 +48,8 @@ public class Chatbot {
 		memesList.add("deal with it");
 		memesList.add("oh baby a triple");
 		memesList.add("beaned"); 
+		memesList.add("nae-nae");
+		memesList.add("pepe");
 	}
 
 	private void buildPoliticalTopicsList() {
@@ -69,6 +73,8 @@ public class Chatbot {
 		politicalTopicList.add("benghazi");
 		politicalTopicList.add("feminism");
 		politicalTopicList.add("build a wall");
+		politicalTopicList.add("deplorables");
+		politicalTopicList.add("you're fired");
 	}
 
 	/**
@@ -98,12 +104,11 @@ public class Chatbot {
 	 */
 	public boolean contentChecker(String currentInput) {
 		boolean hasContent = false;
-		
-		if (currentInput.contains(content))
+		String tempInput = currentInput.toLowerCase();
+		if (tempInput.contains(content.toLowerCase()))
 		{
 			hasContent = true;
 		}
-		
 		return hasContent;
 	}
 
@@ -164,7 +169,8 @@ public class Chatbot {
 	 * @return The username of the Chatbot.
 	 */
 	public String getUserName() {
-		return null;
+		
+		return userName;
 	}
 
 	/**
@@ -173,7 +179,7 @@ public class Chatbot {
 	 * @return The content area for this Chatbot instance.
 	 */
 	public String getContent() {
-		return null;
+		return content;
 	}
 
 	/**
@@ -181,8 +187,13 @@ public class Chatbot {
 	 * 
 	 * @return The reference to the meme list.
 	 */
-	public ArrayList<String> getMemesList() {
-		return null;
+	public ArrayList<String> getMemesList()
+	{
+		if (memesList.size() == 0)
+		{
+			buildMemesList();
+		}
+		return memesList;
 	}
 
 	/**
@@ -191,7 +202,11 @@ public class Chatbot {
 	 * @return The reference to the political topic list.
 	 */
 	public ArrayList<String> getPoliticalTopicList() {
-		return null;
+		if (politicalTopicList.size() == 0)
+		{
+			buildPoliticalTopicsList();
+		}
+		return politicalTopicList;
 	}
 
 	/**
