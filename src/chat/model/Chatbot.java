@@ -50,6 +50,7 @@ public class Chatbot {
 		memesList.add("beaned"); 
 		memesList.add("nae-nae");
 		memesList.add("pepe");
+		memesList.add("it's the nutshack");
 	}
 
 	private void buildPoliticalTopicsList() {
