@@ -3,6 +3,7 @@ package chat.view;
 import javax.swing.*;
 import chat.controller.ChatController;
 import java.awt.Color;
+import java.awt.event.*;
 
 public class ChatPanel extends JPanel{
 	private ChatController baseController;
@@ -17,14 +18,11 @@ public class ChatPanel extends JPanel{
 		this.baseController = baseController;
 		
 		baseLayout = new SpringLayout();
-		chatDisplay = new JTextArea(25, 5);
+		chatDisplay = new JTextArea(5, 20);
 		chatField = new JTextField(25);
-		baseLayout.putConstraint(SpringLayout.EAST, chatField, -10, SpringLayout.EAST, this);
 		chatButton = new JButton("Chat, if you desire.");
-		baseLayout.putConstraint(SpringLayout.NORTH, chatButton, 145, SpringLayout.NORTH, this);
-		baseLayout.putConstraint(SpringLayout.SOUTH, chatField, -44, SpringLayout.NORTH, chatButton);
-		baseLayout.putConstraint(SpringLayout.EAST, chatButton, -90, SpringLayout.EAST, this);
-		
+		chatButton.setToolTipText("sending message to CIA");
+
 		setupChatDisplay();
 		setupPanel();
 		setupListeners();
@@ -50,11 +48,27 @@ public class ChatPanel extends JPanel{
 	
 	private void setupLayout()
 	{
-		
+		baseLayout.putConstraint(SpringLayout.WEST, chatField, 60, SpringLayout.WEST, this);
+		baseLayout.putConstraint(SpringLayout.SOUTH, chatField, -6, SpringLayout.NORTH, chatButton);
+		baseLayout.putConstraint(SpringLayout.WEST, chatButton, 135, SpringLayout.WEST, this);
+		baseLayout.putConstraint(SpringLayout.SOUTH, chatButton, -28, SpringLayout.SOUTH, this);
+		baseLayout.putConstraint(SpringLayout.NORTH, chatDisplay, -115, SpringLayout.NORTH, chatField);
+		baseLayout.putConstraint(SpringLayout.WEST, chatDisplay, 0, SpringLayout.WEST, chatField);
+		baseLayout.putConstraint(SpringLayout.SOUTH, chatDisplay, -6, SpringLayout.NORTH, chatField);
+		baseLayout.putConstraint(SpringLayout.EAST, chatDisplay, 0, SpringLayout.EAST, chatField);
 	}
 	
 	private void setupListeners()
 	{
-		
-	}
+		chatButton.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent click)
+			{
+				String chatbotResponse = baseController.useChatbotCheckers(chatField.getText());
+				
+				chatDisplay.setText("Chatbot says: " + chatbotResponse);
+				chatField.setText("");
+			}
+		 });
+	 }
 }

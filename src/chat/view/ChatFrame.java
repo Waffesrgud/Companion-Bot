@@ -17,9 +17,10 @@ public ChatFrame(ChatController baseController)
 }
 
 private void setupFrame()
-{
-this.setSize(new Dimension(600, 400));
-this.setTitle("S A D B O I I - v.01");
-this.setVisible(true);
-}
+	{
+		this.setContentPane(appPanel);
+		this.setSize(new Dimension(600, 400));
+		this.setTitle("S A D B O I I - v.01");
+		this.setVisible(true);
+	}
 }

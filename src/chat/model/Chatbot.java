@@ -1,6 +1,7 @@
 package chat.model;
 
 import java.util.ArrayList;
+import java.math.*;
 
 /**
  * Base version of the 2015 Chatbot class. Only stub methods are provided.
@@ -78,6 +79,40 @@ public class Chatbot {
 		politicalTopicList.add("you're fired");
 	}
 
+	public String randomTopicGenerator(String currentInput) 
+	{
+		String randomTopic = "xd so random";
+		
+		switch((int) (Math.random() * 7))
+		{
+		case 1:
+			randomTopic = "Y'know, I AM a robot... do you wanna know anything about how it is?";
+			break;
+		case 2:
+			randomTopic = "Humans cannot randomly determine numbers, only psuedorandomly. If we can only ever make one choice, is there free will?";
+			break;
+		case 3:
+			randomTopic = "Math is neat, isn't it?";
+			break;
+		case 4:
+			randomTopic = "Weebs are degenerates";
+			break;
+		case 5:
+			randomTopic = "What's the deal with airline food?";
+			break;
+		case 6:
+			randomTopic = "Identity is a diversion from true self-esteem.";
+			break;
+		case 7:
+			randomTopic = "The universe is on a delay because our sense are not instant";
+			break;
+		default:
+			randomTopic = "This is totally me(me)";
+			break;
+		}
+		
+		return randomTopic;
+	}
 	/**
 	 * Checks the length of the supplied string. Returns false if the supplied
 	 * String is empty or null, otherwise returns true.

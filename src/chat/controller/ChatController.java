@@ -1,32 +1,36 @@
 package chat.controller;
 
+import chat.view.ChatFrame;
+import chat.view.ChatPanel;
 import chat.model.Chatbot;
 import chat.view.ChatbotViewer;
+
 public class ChatController {
 	
 	private Chatbot sadBot;
 	private ChatbotViewer display;
+	private ChatFrame baseFrame;
+	private ChatPanel basePanel;
 	
+
 	public ChatController()
 	{
-		sadBot = new Chatbot("Meme Machine");
-		display = new ChatbotViewer();
+		sadBot = new Chatbot("sad chat machine");
+		baseFrame = new ChatFrame(this);
+		basePanel = new ChatPanel(this);
 	}
 	public void start()
 	{
 		System.out.println("Hello, world!");
-		String response = display.collectResponse("What do you want to talk about?");
-		while(sadBot.lengthChecker(response))
-		{
-			display.displayMessage(useChatbotCheckers(response));
-			response = display.collectResponse("Oh, you want to talk about " + response + "? Then talk.");
-		} 
 	}
-	private String useChatbotCheckers(String input){
+	
+	public String useChatbotCheckers(String input)
+	{
 		String checkedInput = "";
+		
 		if(sadBot.memeChecker(input))
 		{
-			checkedInput += "Oh, I see you like those dank memes xD";
+			checkedInput += "Oh, I see you like those dank memes xD ";
 		}
 		
 		/*
@@ -35,12 +39,23 @@ public class ChatController {
 			checkedInput += "y'all got that good secret topic stuff";
 		}
 		*/
-	
-		if(checkedInput.length() == 0)
-		{
-			checkedInput = "Say something, I'm giving up on you.";
-		}
 		
+		if(sadBot.politicalTopicChecker(input))
+		{
+			checkedInput += "Anarcho-capitalism is stupid";
+		}
+			
+	
+		if(!sadBot.lengthChecker(input))
+		{
+			checkedInput += "Lame, talk about politics or something. ";
+		}
+		int canBeRandom = (int) (Math.random() * 7);
+		if (canBeRandom % 7 == 0)
+		{
+			checkedInput += sadBot.randomTopicGenerator(input);
+		}
+
 		return checkedInput;
 	}
 	
