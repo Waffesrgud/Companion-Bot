@@ -24,6 +24,7 @@ public class Chatbot {
 	 *            The username for the chatbot.
 	 */
 	public Chatbot(String userName) {
+		this.userName = userName;
 		memesList = new ArrayList<String>();
 		politicalTopicList = new ArrayList<String>();
 		buildMemesList();
@@ -118,7 +119,7 @@ public class Chatbot {
 	{
 		boolean isMashed = false;
 		
-		if ("sdf" == currentInput || "dfg" == currentInput || "cvb" == currentInput || ",./" == currentInput)
+		if ("sdf".equals(currentInput) || "dfg".equals(currentInput) || "cvb".equals(currentInput) || ",./".equals(currentInput))
 		{
 			isMashed = true;
 		}
@@ -191,14 +192,14 @@ public class Chatbot {
 		boolean isTwitter = false;
 		if (!(currentInput.indexOf('#') == -1))
 		{
-			if (!(currentInput.substring(currentInput.indexOf('#') + 1) == " "))
+			if (!(currentInput.substring(currentInput.indexOf('#') + 1).equals(" ")))
 				{
 					isTwitter = true;
 				}
 		}
 		if (!(currentInput.indexOf('@') == -1))
 		{
-			if (!(currentInput.substring(currentInput.indexOf('@') + 1 ) == " "))
+			if (!(currentInput.substring(currentInput.indexOf('@') + 1).equals(" ")))
 				{
 					isTwitter = true;
 				}
@@ -238,7 +239,6 @@ public class Chatbot {
 	 * @return The username of the Chatbot.
 	 */
 	public String getUserName() {
-		
 		return userName;
 	}
 
@@ -284,7 +284,26 @@ public class Chatbot {
 	 * @param content
 	 *            The updated value for the content area.
 	 */
-	public void setContent(String content) {
-
+	public void setContent(String content) 
+	{
+		this.content = content;
+	}
+	
+	public boolean inputHTMLChecker(String currentInput)
+	{
+		boolean isHTML = false;
+		int detectedTag = currentInput.indexOf('<');
+		if (detectedTag != -1)
+		{
+			if (currentInput.indexOf(">") < detectedTag + 1)
+			{
+				isHTML = true;
+			}
+		}
+		if (isHTML == true)
+		{
+			if ()
+		}
+		return isHTML;
 	}
 }

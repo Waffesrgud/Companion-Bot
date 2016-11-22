@@ -22,12 +22,15 @@ public class ChatController {
 	public void start()
 	{
 		System.out.println("Hello, world!");
+		
+		
 	}
 	
 	public String useChatbotCheckers(String input)
 	{
 		String checkedInput = "";
-		
+		if(/*whoops*/true)
+		{
 		if(sadBot.memeChecker(input))
 		{
 			checkedInput += "Oh, I see you like those dank memes xD ";
@@ -42,7 +45,7 @@ public class ChatController {
 		
 		if(sadBot.politicalTopicChecker(input))
 		{
-			checkedInput += "Anarcho-capitalism is stupid";
+			checkedInput += "Anarcho-capitalism is stupid ";
 		}
 			
 	
@@ -55,8 +58,19 @@ public class ChatController {
 		{
 			checkedInput += sadBot.randomTopicGenerator(input);
 		}
-
+		} else {
+			display.displayMessage("Leaving me? If you want to, fine by me.");
+			
+			System.exit(0);
+		}
 		return checkedInput;
 	}
-	
-}
+	public ChatFrame getBaseFrame()
+	{
+		return baseFrame;
+	}
+	public Chatbot getChatbot()
+	{
+		return sadBot;
+	}
+}	
