@@ -19,8 +19,16 @@ public class ChatPanel extends JPanel{
 		
 		baseLayout = new SpringLayout();
 		chatDisplay = new JTextArea(5, 20);
+		baseLayout.putConstraint(SpringLayout.NORTH, chatDisplay, 55, SpringLayout.NORTH, this);
+		baseLayout.putConstraint(SpringLayout.WEST, chatDisplay, 75, SpringLayout.WEST, this);
+		baseLayout.putConstraint(SpringLayout.SOUTH, chatDisplay, -136, SpringLayout.SOUTH, this);
+		baseLayout.putConstraint(SpringLayout.EAST, chatDisplay, -61, SpringLayout.EAST, this);
 		chatField = new JTextField(25);
+		baseLayout.putConstraint(SpringLayout.NORTH, chatField, 23, SpringLayout.SOUTH, chatDisplay);
+		baseLayout.putConstraint(SpringLayout.WEST, chatField, 0, SpringLayout.WEST, chatDisplay);
 		chatButton = new JButton("Chat, if you desire.");
+		baseLayout.putConstraint(SpringLayout.NORTH, chatButton, 7, SpringLayout.SOUTH, chatField);
+		baseLayout.putConstraint(SpringLayout.EAST, chatButton, -137, SpringLayout.EAST, this);
 		chatButton.setToolTipText("sending message to CIA");
 
 		setupChatDisplay();
@@ -41,21 +49,13 @@ public class ChatPanel extends JPanel{
 	{
 		this.setLayout(baseLayout);
 		this.setBackground(Color.GREEN);
-		this.add(chatButton);
 		this.add(chatDisplay);
 		this.add(chatField);
+		this.add(chatButton);
 	}
 	
 	private void setupLayout()
 	{
-		baseLayout.putConstraint(SpringLayout.WEST, chatField, 60, SpringLayout.WEST, this);
-		baseLayout.putConstraint(SpringLayout.SOUTH, chatField, -6, SpringLayout.NORTH, chatButton);
-		baseLayout.putConstraint(SpringLayout.WEST, chatButton, 135, SpringLayout.WEST, this);
-		baseLayout.putConstraint(SpringLayout.SOUTH, chatButton, -28, SpringLayout.SOUTH, this);
-		baseLayout.putConstraint(SpringLayout.NORTH, chatDisplay, -115, SpringLayout.NORTH, chatField);
-		baseLayout.putConstraint(SpringLayout.WEST, chatDisplay, 0, SpringLayout.WEST, chatField);
-		baseLayout.putConstraint(SpringLayout.SOUTH, chatDisplay, -6, SpringLayout.NORTH, chatField);
-		baseLayout.putConstraint(SpringLayout.EAST, chatDisplay, 0, SpringLayout.EAST, chatField);
 	}
 	
 	private void setupListeners()

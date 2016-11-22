@@ -2,6 +2,7 @@ package chat.model;
 
 import java.util.ArrayList;
 import java.math.*;
+import java.io.*;
 
 /**
  * Base version of the 2015 Chatbot class. Only stub methods are provided.
@@ -113,6 +114,18 @@ public class Chatbot {
 		
 		return randomTopic;
 	}
+	public boolean keyboardMashChecker(String currentInput)
+	{
+		boolean isMashed = false;
+		
+		if ("sdf" == currentInput || "dfg" == currentInput || "cvb" == currentInput || ",./" == currentInput)
+		{
+			isMashed = true;
+		}
+		
+		return isMashed;
+	}
+	
 	/**
 	 * Checks the length of the supplied string. Returns false if the supplied
 	 * String is empty or null, otherwise returns true.
@@ -172,7 +185,27 @@ public class Chatbot {
 		}
 		return checkedPoliticalTopic;
 	}
-
+	
+	public boolean twitterChecker(String currentInput)
+	{
+		boolean isTwitter = false;
+		if (!(currentInput.indexOf('#') == -1))
+		{
+			if (!(currentInput.substring(currentInput.indexOf('#') + 1) == " "))
+				{
+					isTwitter = true;
+				}
+		}
+		if (!(currentInput.indexOf('@') == -1))
+		{
+			if (!(currentInput.substring(currentInput.indexOf('@') + 1 ) == " "))
+				{
+					isTwitter = true;
+				}
+		}
+		return isTwitter;
+	}
+	
 	/**
 	 * Checks to see that the supplied String value is in the current memesList
 	 * variable.
