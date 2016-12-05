@@ -48,7 +48,19 @@ public class ChatController {
 			checkedInput += "Anarcho-capitalism is stupid ";
 		}
 			
-	
+		if(sadBot.twitterChecker(input))
+		{
+			checkedInput += "This isn't twitter, buddyboy. Type like a normal person. ";
+		}
+		if(sadBot.keyboardMashChecker(input))
+		{
+			checkedInput += "Get your face away from the keyboard, disgusting. ";
+		}
+		if(sadBot.getUserName() == input)
+		{
+			checkedInput += "Are... are you hacking me? Don't do that!";
+		}
+		
 		if(!sadBot.lengthChecker(input))
 		{
 			checkedInput += "Lame, talk about politics or something. ";
