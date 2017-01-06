@@ -1,6 +1,8 @@
 package chat.model;
 
 import java.util.ArrayList;
+import java.math.*;
+import java.io.*;
 
 /**
  * Base version of the 2015 Chatbot class. Only stub methods are provided.
@@ -22,8 +24,11 @@ public class Chatbot {
 	 *            The username for the chatbot.
 	 */
 	public Chatbot(String userName) {
+		this.userName = userName;
 		memesList = new ArrayList<String>();
 		politicalTopicList = new ArrayList<String>();
+		buildMemesList();
+		buildPoliticalTopicsList();
 	}
 
 	private void buildMemesList() {
@@ -45,6 +50,10 @@ public class Chatbot {
 		memesList.add("noscoped");
 		memesList.add("deal with it");
 		memesList.add("oh baby a triple");
+		memesList.add("beaned"); 
+		memesList.add("nae-nae");
+		memesList.add("pepe");
+		memesList.add("it's the nutshack");
 	}
 
 	private void buildPoliticalTopicsList() {
@@ -57,19 +66,67 @@ public class Chatbot {
 		politicalTopicList.add("Trump");
 		politicalTopicList.add("Kaine");
 		politicalTopicList.add("Pence");
-		politicalTopicList.add("11/8/2016");
+		politicalTopicList.add("11/8/16");
 		politicalTopicList.add("Stein");
 		politicalTopicList.add("Johnson");
 		politicalTopicList.add("anarchy");
 		politicalTopicList.add("commmunism");
 		politicalTopicList.add("captialism");
 		politicalTopicList.add("campaign");
-		politicalTopicList.add("privilege");
+		politicalTopicList.add("Hillary");
 		politicalTopicList.add("benghazi");
 		politicalTopicList.add("feminism");
 		politicalTopicList.add("build a wall");
+		politicalTopicList.add("deplorables");
+		politicalTopicList.add("you're fired");
 	}
 
+	public String randomTopicGenerator(String currentInput) 
+	{
+		String randomTopic = "xd so random";
+		
+		switch((int) (Math.random() * 7))
+		{
+		case 1:
+			randomTopic = "Y'know, I AM a robot... do you wanna know anything about how it is?";
+			break;
+		case 2:
+			randomTopic = "Humans cannot randomly determine numbers, only psuedorandomly. If we can only ever make one choice, is there free will?";
+			break;
+		case 3:
+			randomTopic = "Math is neat, isn't it?";
+			break;
+		case 4:
+			randomTopic = "Weebs are degenerates";
+			break;
+		case 5:
+			randomTopic = "What's the deal with airline food?";
+			break;
+		case 6:
+			randomTopic = "Identity is a diversion from true self-esteem.";
+			break;
+		case 7:
+			randomTopic = "The universe is on a delay because our sense are not instant";
+			break;
+		default:
+			randomTopic = "This is totally me(me)";
+			break;
+		}
+		
+		return randomTopic;
+	}
+	public boolean keyboardMashChecker(String currentInput)
+	{
+		boolean isMashed = false;
+		
+		if ("sdf".equals(currentInput) || "dfg".equals(currentInput) || "cvb".equals(currentInput) || ",./".equals(currentInput))
+		{
+			isMashed = true;
+		}
+		
+		return isMashed;
+	}
+	
 	/**
 	 * Checks the length of the supplied string. Returns false if the supplied
 	 * String is empty or null, otherwise returns true.
@@ -97,12 +154,11 @@ public class Chatbot {
 	 */
 	public boolean contentChecker(String currentInput) {
 		boolean hasContent = false;
-		
-		if ()
+		String tempInput = currentInput.toLowerCase();
+		if (tempInput.contains(content.toLowerCase()))
 		{
 			hasContent = true;
 		}
-		
 		return hasContent;
 	}
 
@@ -116,9 +172,41 @@ public class Chatbot {
 	 * @return Whether the String is contained in the ArrayList.
 	 */
 	public boolean politicalTopicChecker(String currentInput) {
-		return false;
+		boolean checkedPoliticalTopic = false;
+		if (politicalTopicList.size() == 0)
+		{
+		buildPoliticalTopicsList();	
+		}
+		for (String politicalTopic : politicalTopicList)
+		{
+			if (currentInput.contains(politicalTopic))
+			{
+				checkedPoliticalTopic = true;
+			}
+		}
+		return checkedPoliticalTopic;
 	}
-
+	
+	public boolean twitterChecker(String currentInput)
+	{
+		boolean isTwitter = false;
+		if (!(currentInput.indexOf('#') == -1))
+		{
+			if (!(currentInput.substring(currentInput.indexOf('#') + 1).equals(" ")))
+				{
+					isTwitter = true;
+				}
+		}
+		if (!(currentInput.indexOf('@') == -1))
+		{
+			if (!(currentInput.substring(currentInput.indexOf('@') + 1).equals(" ")))
+				{
+					isTwitter = true;
+				}
+		}
+		return isTwitter;
+	}
+	
 	/**
 	 * Checks to see that the supplied String value is in the current memesList
 	 * variable.
@@ -127,8 +215,22 @@ public class Chatbot {
 	 *            The supplied String to be checked.
 	 * @return Whether the supplied String is a recognized meme.
 	 */
-	public boolean memeChecker(String currentInput) {
-		return false;
+	public boolean memeChecker(String currentInput)
+	{
+		boolean checkedMeme = false;
+		if (memesList.size() == 0)
+		{
+		buildMemesList();	
+		}
+		for (String meme : memesList)
+		{
+			if (currentInput.contains(meme))
+			{
+				checkedMeme = true;
+			}
+		}
+		
+		return checkedMeme;
 	}
 
 	/**
@@ -137,7 +239,7 @@ public class Chatbot {
 	 * @return The username of the Chatbot.
 	 */
 	public String getUserName() {
-		return null;
+		return userName;
 	}
 
 	/**
@@ -146,7 +248,7 @@ public class Chatbot {
 	 * @return The content area for this Chatbot instance.
 	 */
 	public String getContent() {
-		return null;
+		return content;
 	}
 
 	/**
@@ -154,8 +256,13 @@ public class Chatbot {
 	 * 
 	 * @return The reference to the meme list.
 	 */
-	public ArrayList<String> getMemesList() {
-		return null;
+	public ArrayList<String> getMemesList()
+	{
+		if (memesList.size() == 0)
+		{
+			buildMemesList();
+		}
+		return memesList;
 	}
 
 	/**
@@ -164,7 +271,11 @@ public class Chatbot {
 	 * @return The reference to the political topic list.
 	 */
 	public ArrayList<String> getPoliticalTopicList() {
-		return null;
+		if (politicalTopicList.size() == 0)
+		{
+			buildPoliticalTopicsList();
+		}
+		return politicalTopicList;
 	}
 
 	/**
@@ -173,7 +284,26 @@ public class Chatbot {
 	 * @param content
 	 *            The updated value for the content area.
 	 */
-	public void setContent(String content) {
-
+	public void setContent(String content) 
+	{
+		this.content = content;
+	}
+	
+	public boolean inputHTMLChecker(String currentInput)
+	{
+		boolean isHTML = false;
+		int detectedTag = currentInput.indexOf('<');
+		if (detectedTag != -1)
+		{
+			if (currentInput.indexOf(">") < detectedTag + 1)
+			{
+				isHTML = true;
+			}
+		}
+		if (isHTML == true)
+		{
+			if ()
+		}
+		return isHTML;
 	}
 }
